@@ -536,8 +536,13 @@ if __name__ == "__main__":
 from healthcheck import app as health_app
 
 def run_healthcheck():
-    health_app.run(host='0.0.0.0', port=10000)
+    health_app.run(host='0.0.0.0', port=8080)
 
 if __name__ == '__main__':
     threading.Thread(target=run_healthcheck).start()
     app.run()  # Your Pyrogram bot
+    
+if __name__ == '__main__':
+    from healthcheck import run_server
+    run_server()  # Starts Flask
+    app.run()     # Starts your Pyrogram bot
