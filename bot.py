@@ -532,3 +532,12 @@ async def index_new_file(client: Client, message: Message):
 if __name__ == "__main__":
     print("Starting AutoFilter Bot...")
     app.run()
+    import threading
+from healthcheck import app as health_app
+
+def run_healthcheck():
+    health_app.run(host='0.0.0.0', port=10000)
+
+if __name__ == '__main__':
+    threading.Thread(target=run_healthcheck).start()
+    app.run()  # Your Pyrogram bot
